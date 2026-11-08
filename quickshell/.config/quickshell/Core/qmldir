@@ -1,0 +1,8 @@
+singleton UI UI.qml
+Anim Anim.qml
+CAnim CAnim.qml
+Pop Pop.qml
+Gel Gel.qml
+Plate Plate.qml
+Halftone Halftone.qml
+Liquid Liquid.qml

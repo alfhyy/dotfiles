@@ -1,0 +1,48 @@
+vim.g.mapleader = " "
+
+local notes = vim.fn.expand("~/Documents/notes")
+vim.fn.mkdir(notes, "p")
+
+local o = vim.o
+o.number = true
+o.relativenumber = true
+o.wrap = true
+o.linebreak = true
+o.breakindent = true
+o.conceallevel = 2
+o.spell = true
+o.spelllang = "en"
+o.undofile = true
+o.cursorline = true
+o.scrolloff = 8
+o.signcolumn = "no"
+o.termguicolors = true
+
+vim.keymap.set("i", "jk", "<Esc>")
+vim.keymap.set({ "n", "i", "v" }, "<C-s>", "<Cmd>w<CR>")
+vim.keymap.set("n", "<leader>nd", function()
+  vim.cmd.edit(notes .. "/" .. os.date("%Y-%m-%d") .. ".md")
+end)
+vim.keymap.set("n", "<leader>nf", function() require("fzf-lua").files({ cwd = notes }) end)
+vim.keymap.set("n", "<leader>ng", function() require("fzf-lua").live_grep({ cwd = notes }) end)
+vim.keymap.set("n", "<leader>e", "<Cmd>Oil<CR>")
+
+vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
+  pattern = "*.md",
+  command = "silent! write",
+})
+
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.uv.fs_stat(lazypath) then
+  vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath })
+end
+vim.opt.rtp:prepend(lazypath)
+
+require("lazy").setup({
+  { "MeanderingProgrammer/render-markdown.nvim", ft = "markdown", opts = {} },
+  { "ibhagwan/fzf-lua", cmd = "FzfLua", opts = {} },
+  { "stevearc/oil.nvim", cmd = "Oil", opts = {} },
+  { "folke/which-key.nvim", event = "VeryLazy", opts = {} },
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000,
+    config = function() vim.cmd.colorscheme("catppuccin") end },
+})

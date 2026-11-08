@@ -1,0 +1,73 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    "source": "/home/hapis/.config/fastfetch/rei.jpg",
+    "type": "kitty",
+    "height": 12,
+    "padding": {
+      "top": 2,
+      "left": 3
+    }
+  },
+  "display": {
+    "separator": " "
+  },
+  "modules": [
+    "break",
+    "break",
+    "break",
+    {
+      "type": "title",
+      "key": "† ",
+      "format": "{user-name}",
+      "keyColor": "34"
+    },
+    {
+      "type": "os",
+      "key": "\uf303 ",
+      "keyColor": "34"
+    },
+    {
+      "type": "kernel",
+      "key": "\uf17c ",
+      "keyColor": "34"
+    },
+    {
+      "type": "packages",
+      "key": "\uf487 ",
+      "format": "{pacman} (pacman)",
+      "keyColor": "34"
+    },
+    {
+      "type": "shell",
+      "key": "\uf120 ",
+      "keyColor": "34"
+    },
+    {
+      "type": "wm",
+      "key": "\uf2d0 ",
+      "keyColor": "34"
+    },
+    {
+      "type": "uptime",
+      "key": "\uf017 ",
+      "keyColor": "34"
+    },
+    {
+      "type": "media",
+      "key": "\uf001 ",
+      "keyColor": "34"
+    },
+    "break",
+    {
+      "type": "custom",
+      "format": "\u001b[90m▃▃▃  \u001b[31m▃▃▃  \u001b[32m▃▃▃  \u001b[33m▃▃▃  \u001b[34m▃▃▃  \u001b[35m▃▃▃  \u001b[36m▃▃▃  \u001b[37m▃▃▃ "
+    },
+    "break",
+    {
+      "type": "custom",
+      "format": "\u001b[3m\u001b[90m\u001b[0m"
+    },
+    "break"
+  ]
+}

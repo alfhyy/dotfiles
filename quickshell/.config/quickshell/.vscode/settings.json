@@ -1,0 +1,9 @@
+{
+  "editor.minimap.autohide": "scroll",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.scrollbar.vertical": "visible",
+  "[qml]": {
+    "editor.defaultFormatter": "Delgan.qml-format"
+  },
+  "cmake.sourceDirectory": "/home/hapis/.config/quickshell/plugins/cava"
+}

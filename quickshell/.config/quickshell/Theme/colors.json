@@ -1,0 +1,18 @@
+{
+  "ink": "#ffffff",
+  "ink_raised": "#e5e8ed",
+  "paper": "#181c20",
+  "paper_dim": "#41474d",
+  "accent": "#266489",
+  "accent_alt": "#64597b",
+  "on_accent": "#ffffff",
+  "line": "#71787e",
+  "sheet": "#2d3135",
+  "sheet_ink": "#eef1f6",
+  "sheet_mark": "#95cdf7",
+  "stroke": "#000000",
+  "accent_soft": "#c9e6ff",
+  "on_accent_soft": "#001e2f",
+  "danger": "#ba1a1a",
+  "on_danger": "#ffffff"
+}
