@@ -5,7 +5,8 @@ import Quickshell.Io
 import qs.Core
 import qs.Theme
 
-// Proxy ID card: identity + live system meters + quick actions. Only exists while the drawer is open.
+// Proxy ID card: identity + live system meters + quick actions. Built once with its drawer;
+// the meters only poll while it is open.
 Plate {
     id: card
 

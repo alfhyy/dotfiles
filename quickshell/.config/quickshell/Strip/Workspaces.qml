@@ -13,14 +13,31 @@ Item {
     width: UI.railW
     height: count * cell
 
+    // gel travel: the edge facing the target springs ahead, the other one catches up,
+    // so the pill stretches toward the new workspace and snaps back to size
+    onIdxChanged: {
+        var t = idx * cell + 4
+        var up = t < pill.lo
+        loAnim.kind = up ? "fast" : "spatial"
+        hiAnim.kind = up ? "spatial" : "fast"
+        pill.lo = t
+        pill.hi = t + cell - 8
+    }
+
     Gel {
+        id: pill
+
+        property real lo: ws.idx * ws.cell + 4
+        property real hi: (ws.idx + 1) * ws.cell - 4
+        Behavior on lo { Anim { id: loAnim } }
+        Behavior on hi { Anim { id: hiAnim } }
+
         x: UI.edge + UI.pad
-        y: ws.idx * ws.cell + 4
+        y: lo
         width: UI.inner
-        height: ws.cell - 8
-        radius: height / 2
+        height: Math.max(8, hi - lo)
+        radius: width / 2
         opacity: ws.idx >= 0 && ws.idx < ws.count ? 1 : 0
-        Behavior on y { Anim {} }
         Behavior on opacity { Anim { kind: "effects" } }
     }
 

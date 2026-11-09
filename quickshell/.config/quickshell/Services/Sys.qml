@@ -142,9 +142,11 @@ Singleton {
         }
     }
 
+    // nmcli monitor prints a burst of lines per change (a reconnect is ~10-20): swallow the burst
+    // (lines < 0.3s apart) and query once instead of spawning nmcli per line
     Process {
         running: true
-        command: ["sh", "-c", "p() { nmcli -t -f TYPE,STATE device; echo ==; }; p; nmcli monitor | while read -r _; do p; done"]
+        command: ["sh", "-c", "p() { nmcli -t -f TYPE,STATE device; echo ==; }; p; nmcli monitor | while read -r _; do while read -r -t 0.3 _; do :; done; p; done"]
         stdout: SplitParser {
             onRead: data => {
                 if (data === "==") {

@@ -122,6 +122,17 @@ Plate {
         color: Theme.stroke
     }
 
+    // one pill for today, behind the numbers (was a hidden Gel in each of the 42 cells)
+    Gel {
+        readonly property int i: cal.lead + Sys.now.getDate() - 1
+        visible: cal.shift === 0
+        x: 12 + (i % 7) * 38 + 4
+        y: 132 + Math.floor(i / 7) * 30 + 3
+        width: 30
+        height: 24
+        radius: 12
+    }
+
     Repeater {
         model: 42
 
@@ -137,14 +148,6 @@ Plate {
             y: 132 + Math.floor(index / 7) * 30
             width: 38
             height: 30
-
-            Gel {
-                visible: cell.today
-                anchors.centerIn: parent
-                width: 30
-                height: 24
-                radius: 12
-            }
 
             Text {
                 anchors.centerIn: parent
