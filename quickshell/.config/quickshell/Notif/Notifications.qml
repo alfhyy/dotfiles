@@ -2,24 +2,10 @@ import QtQuick
 import Quickshell
 import Quickshell.Hyprland
 import Quickshell.Wayland
-import Quickshell.Services.Notifications
 import qs.Core
+import qs.Services
 
 Scope {
-    NotificationServer {
-        id: server
-
-        keepOnReload: true
-        persistenceSupported: true
-        bodySupported: true
-        bodyMarkupSupported: true
-        bodyHyperlinksSupported: true
-        actionsSupported: true
-        imageSupported: true
-
-        onNotification: n => n.tracked = true
-    }
-
     PanelWindow {
         id: win
 
@@ -57,7 +43,7 @@ Scope {
             spacing: 10
             interactive: false
             // newest on top; ScriptModel diffs the array so existing cards keep their delegates
-            model: ScriptModel { values: [...server.trackedNotifications.values].reverse() }
+            model: ScriptModel { values: [...Notifs.server.trackedNotifications.values].reverse() }
             delegate: NotifCard {}
 
 
