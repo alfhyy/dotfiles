@@ -1,8 +1,8 @@
 return {
-    primary = "95cdf7",
-    secondary = "b7c9d9",
-    tertiary = "cec0e8",
-    on_surface = "e0e3e8",
-    outline = "8b9198",
+    primary = "ffffff",
+    secondary = "c6c6c6",
+    tertiary = "e2e2e2",
+    on_surface = "e2e2e2",
+    outline = "919191",
     shadow = "000000",
 }
