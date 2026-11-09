@@ -1,6 +1,7 @@
 # ZZZ
 
-This describes the rice as it exists on 2026-11-10, read from the code (commit `28fb1bc`).
+This describes the rice as it exists on 2026-11-10, read from the code. Paths are as of the theme
+switching refactor: zzz lives in Themes/Zzz/ and the per-theme files of each surface.
 Where the code disagrees with CLAUDE.md or design/THEMES.md, the code is described as it is and the
 disagreement is listed under "Deviations" at the end. Nothing here is aspirational.
 
@@ -19,8 +20,9 @@ panels, which are halftoned), grey-on-grey low contrast.
 ## Palette
 
 Source: matugen from the current wallpaper, `--source-color-index 0`, default scheme type, mode read from
-`~/.cache/matugen-mode` (currently `dark`; the profile deck's LIGHT/DARK pill flips it).
-Template: matugen/.config/matugen/templates/quickshell-colors.json → Theme/colors.json → Theme/theme.qml.
+`~/.local/state/rice/zzz/mode` (currently `dark`; the profile deck's LIGHT/DARK pill runs
+`rice --mode`). Switching settings: ~/.config/rice/themes/zzz.env.
+Template: matugen/.config/matugen/templates/quickshell-colors.json → Services/colors.json → Services/Theme.qml.
 
 | Token | matugen role | Current (dark) | Used for |
 |---|---|---|---|
@@ -41,7 +43,7 @@ Template: matugen/.config/matugen/templates/quickshell-colors.json → Theme/col
 | danger | error | #ffb4ab | Low battery, critical notifications, meters over 85% |
 | on_danger | on_error | #690005 | Text on danger |
 
-Derived in theme.qml:
+Derived in Services/Theme.qml:
 
 - `ink` and `ink_raised` are tinted toward `accent` (25% in dark mode, 18% in light; `ink_raised` +6%),
   because matugen's surfaces are near neutral and the wallpaper should show in the main colour.
@@ -88,12 +90,12 @@ Conventions:
 
 ## Shape language
 
-- **Plate** (Core/Plate.qml): the base surface. A face filled `ink` (or `sheet`), two offset layers behind
+- **Plate** (Themes/Zzz/Kit/Plate.qml): the base surface. A face filled `ink` (or `sheet`), two offset layers behind
   it (`tone` at +4px, `tone` darkened 1.5× at +2px; UI.depth = 4) and an outline drawn above the content
   so nothing paints over it. Rail edge 2px; music drawer edge 3px.
-- **Gel** (Core/Gel.qml): a solid chip with a 2px `stroke` border. Pills, the workspace indicator, orb
+- **Gel** (Themes/Zzz/Kit/Gel.qml): a solid chip with a 2px `stroke` border. Pills, the workspace indicator, orb
   centres, the today marker, buttons.
-- **Halftone** (Core/Halftone.qml): staggered dots that shrink toward the bottom. pitch 4, rmax 1.5 by
+- **Halftone** (Themes/Zzz/Kit/Halftone.qml): staggered dots that shrink toward the bottom. pitch 4, rmax 1.5 by
   default. paper at 16% on the rail, 7–10% on cards; stroke at 22% on deck art panels.
 - Corners: square by default (rail, header strips, close boxes, cover art, art panels; Hyprland rounding 0).
   Rounded only where stated: notification cards 4, deck cards 10, pills fully round.
@@ -106,7 +108,7 @@ Conventions:
 
 ## Components
 
-### Rail (Strip/Strip.qml)
+### Rail (Themes/Zzz/Strip/Strip.qml)
 
 Left edge of every screen. Margins 5 top/left/bottom, width 60 + 4 depth, exclusive zone 64.
 Inner box model: 2 edge + 6 padding, inner width 44.
@@ -131,14 +133,14 @@ Top to bottom:
      Click opens the calendar.
    - Power: the `accent_alt` 8-point star with an `ink` power glyph; rotates 45° on hover; runs wlogout.
 
-### Drawers (Strip/Drawer.qml)
+### Drawers (Themes/Zzz/Strip/Drawer.qml)
 
 Panels that slide out of the rail at x = 73, vertically centred on the item that opened them and clamped
 to the screen. They open with a 40px slide plus fade on the `spatial` curve. Each is built once and kept
 mapped: when closed it is transparent and click-through. A Hyprland focus grab closes it on outside
 click, and a 250ms guard stops the same click from reopening it. One drawer at a time.
 
-- **Profile deck** (Strip/Profile.qml): three numbered cards, 320 tall. The open card is 300 wide and
+- **Profile deck** (Themes/Zzz/Strip/Profile.qml): three numbered cards, 320 tall. The open card is 300 wide and
   `sheet`-filled; folded cards are 84 wide and `ink`. The deck's total width is fixed, and cards trade
   width on the `spatial` curve. Each card has a framed art panel (140 tall) with its number stamped
   bottom-left (display 34 Black, white with a 2px black offset copy; scaled to 0.72 when folded) and an
@@ -162,7 +164,7 @@ click, and a 250ms guard stops the same click from reopening it. One drawer at a
   paths (8px round-joined black stroke, offset shadow copy, white rim), filled `stroke_accent` or
   `danger`; a black `%` pill with a bolt while charging.
 
-### Notifications (Notif/)
+### Notifications (Themes/Zzz/Notif/, server in Services/Notifs.qml)
 
 Top-right overlay on the focused monitor, 5px margin, 340-wide cards stacked newest-first with 10px gaps.
 
@@ -179,7 +181,7 @@ Top-right overlay on the focused monitor, 5px margin, 340-wide cards stacked new
 - Server: persistence, markup, links, actions and images are all supported. Low battery (≤20%, once per
   discharge) is raised through it.
 
-### Theme change: the liquid pour (Core/Liquid.qml)
+### Theme change: the liquid pour (Themes/Zzz/Kit/Liquid.qml)
 
 When colors.json changes (matugen post_hook `qs ipc call theme reload`, or the file watcher), every visible
 window snapshots its old look, the colours swap once 50ms later, and the snapshot drains downward behind
@@ -188,7 +190,8 @@ This is the signature moment.
 
 ## Motion
 
-Curves (Core/UI.qml), always through `Anim` / `CAnim`:
+Curves (Themes/Zzz/Kit/Style.qml, bound into Core/UI.qml's motion slots by Themes/Zzz/Shell.qml),
+always through `Anim` / `CAnim`:
 
 | Name | Duration | Bezier | Feel | Used for |
 |---|---|---|---|---|
@@ -211,7 +214,7 @@ Hyprland matches the bar:
 - Window close slides to the bottom on `ease`.
 - Quickshell layers have no compositor animation, since Quickshell animates itself.
 
-## Hyprland (hypr/.config/hypr/hyprland.lua)
+## Hyprland (hypr/.config/hypr/themes/zzz.lua, loaded by hyprland.lua)
 
 Windows get the same slab language as the bar:
 
@@ -241,7 +244,7 @@ From CLAUDE.md:
 - eDP-1 at 1366×768 is the primary screen and the hard constraint; HDMI-A-1 is 2560×1440.
 - Colours only from matugen tokens.
 - No polling timers, idle animation, blur, ShaderEffect or blur layer rules.
-- Animations through Anim/CAnim with the UI.qml curves, never linear.
+- Animations through Anim/CAnim with the theme's curves, never linear.
 - Text under 14px in the mono or pixel font; every label has a fixed width and elides.
 - Shared code in Core/ and Services/; a theme folder holds only what differs.
 - No explanatory inline comments.
@@ -263,13 +266,14 @@ Stated in conversation:
 
 Where the code currently disagrees with CLAUDE.md or design/THEMES.md:
 
-- **Theme switching isn't built yet.** No `rice` command, no `~/.local/state/rice/theme`, no Themes/Zzz or
-  Themes/Lain, no hypr/themes/. Quickshell is a single theme in Strip/, Notif/, Core/, Services/, Theme/.
+- **Only zzz exists.** The switching machinery is built (rice, the state file, Themes/<Name>, per-surface
+  themes/ files), but there is no lain yet: no Themes/Lain, no lain.env, no lain surface files, so
+  `rice lain` refuses. wlogout and GTK have no per-theme files.
   The lain design sits at the quickshell root (DESIGN.md), not at design/lain/DESIGN.md.
 - **There is no design/zzz/refs folder.** The deck's three-card reference image only exists in conversation.
-- **Bottom-group spacing is 0, not −6** (Strip/Strip.qml).
-- **ShaderEffect:** Core/Liquid.qml (theme pour), Strip/Music.qml (squiggle progress) and
-  Core/Halftone.qml (the dots, moved from Canvas to a shader for performance) all use ShaderEffect.
+- **Bottom-group spacing is 0, not −6** (Themes/Zzz/Strip/Strip.qml).
+- **ShaderEffect:** Kit/Liquid.qml (theme pour), Strip/Music.qml (squiggle progress) and
+  Kit/Halftone.qml (the dots, moved from Canvas to a shader for performance) all use ShaderEffect.
 - **Timers and idle animation:**
   - Profile meters poll every 2s while open.
   - The music standby wave ticks every 120ms while the drawer is open with no player.
@@ -281,7 +285,7 @@ Where the code currently disagrees with CLAUDE.md or design/THEMES.md:
   - Liquid uses its own NumberAnimation with a custom bezier.
   - VText's original pauses were replaced by Timer intervals.
 - **Hex literals:**
-  - Theme/theme.qml fallback colours and `on_stroke` `#ffffff`; Battery's `"white"` rim.
+  - Services/Theme.qml fallback colours and `on_stroke` `#ffffff`; Battery's `"white"` rim.
   - hyprland.lua fallback palette.
   - kitty template ANSI colours and matugen `custom_colors`.
   - hyprlock `rgb()` values.
