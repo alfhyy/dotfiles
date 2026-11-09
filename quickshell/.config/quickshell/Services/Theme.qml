@@ -2,6 +2,7 @@ pragma Singleton
 import QtQuick
 import Quickshell
 import Quickshell.Io
+import qs.Core
 
 // Palette from matugen (templates/quickshell-colors.json -> Services/colors.json).
 // Changes don't animate colours (that re-evaluated every binding each frame): the file loads into a
@@ -15,6 +16,34 @@ Singleton {
 
     property bool ready: false
     property string lastSig: ""
+
+    property string name: "zzz"
+    property string pending: ""
+    property bool named: false
+
+    function request(n) {
+        n = n || "zzz"
+        if (!named) {
+            named = true
+            name = n
+            return
+        }
+        if (n === name) {
+            pending = ""
+            fallback.stop()
+            return
+        }
+        pending = n
+        UI.close()
+        fallback.restart()
+    }
+
+    function commit() {
+        fallback.stop()
+        if (pending === "") return
+        name = pending
+        pending = ""
+    }
 
     // matugen's surfaces are near-neutral; mix in the accent so the wallpaper shows in the main colour
     readonly property real tintDark: 0.25
@@ -74,6 +103,23 @@ Singleton {
         onTriggered: { theme.apply(); theme.swapped() }
     }
 
+    Timer {
+        id: fallback
+        interval: 3000
+        onTriggered: theme.commit()
+    }
+
+    FileView {
+        id: state
+        path: (Quickshell.env("XDG_STATE_HOME") || Quickshell.env("HOME") + "/.local/state") + "/rice/theme"
+        blockLoading: true
+        watchChanges: true
+        printErrors: false
+        onFileChanged: reload()
+        onLoaded: theme.request(text().trim())
+        onLoadFailed: theme.named = true
+    }
+
     FileView {
         id: file
         path: Quickshell.shellPath("Services/colors.json")
@@ -83,6 +129,14 @@ Singleton {
         onLoaded: {
             var sig = JSON.stringify(c)
             if (!theme.ready) { theme.apply(); theme.lastSig = sig; theme.ready = true; return }
+            if (theme.pending !== "") {
+                if (sig === theme.lastSig) return
+                swap.stop()
+                theme.lastSig = sig
+                theme.apply()
+                theme.commit()
+                return
+            }
             // the watcher and the IPC hook both fire per change: one transition per real change,
             // and none while a swap is pending (it applies the latest staged values anyway)
             if (sig === theme.lastSig || swap.running) return
@@ -115,6 +169,9 @@ Singleton {
     // matugen's post_hook calls `qs ipc call theme reload` (file watches miss its atomic replace)
     IpcHandler {
         target: "theme"
-        function reload(): void { file.reload() }
+        function reload(): void {
+            state.reload()
+            file.reload()
+        }
     }
 }

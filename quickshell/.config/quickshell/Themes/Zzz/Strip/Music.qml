@@ -1,5 +1,6 @@
 import QtQuick
 import qs.Core
+import qs.Themes.Zzz.Kit
 import qs.Services
 
 Plate {
@@ -76,7 +77,7 @@ Plate {
         y: 10
         text: Sys.playing ? "NOW PLAYING" : Sys.player ? "PAUSED" : "STANDBY"
         color: Theme.accent
-        font.family: UI.display
+        font.family: Style.display
         font.pixelSize: 9
         font.weight: Font.Black
         font.letterSpacing: 3
@@ -96,7 +97,7 @@ Plate {
         text: Sys.title || "NOTHING PLAYING"
         elide: Text.ElideRight
         color: Theme.paper
-        font.family: UI.display
+        font.family: Style.display
         font.pixelSize: 18
         font.weight: Font.Black
     }
@@ -108,7 +109,7 @@ Plate {
         text: Sys.artist || "\u2014"
         elide: Text.ElideRight
         color: Theme.paper_dim
-        font.family: UI.display
+        font.family: Style.display
         font.pixelSize: 11
         font.weight: Font.Bold
     }
@@ -156,7 +157,7 @@ Plate {
         y: 162
         text: Sys.fmt(music.pos)
         color: Theme.paper_dim
-        font.family: UI.display
+        font.family: Style.display
         font.pixelSize: 9
         font.weight: Font.Bold
     }
@@ -167,7 +168,7 @@ Plate {
         y: 162
         text: Sys.fmt(music.len)
         color: Theme.paper_dim
-        font.family: UI.display
+        font.family: Style.display
         font.pixelSize: 9
         font.weight: Font.Bold
     }
@@ -196,7 +197,7 @@ Plate {
                     anchors.centerIn: parent
                     text: btn.index === 0 ? "\uf048" : btn.index === 2 ? "\uf051" : Sys.playing ? "\uf04c" : "\uf04b"
                     color: btn.index === 1 ? Theme.on_accent : Theme.paper
-                    font.family: UI.icons
+                    font.family: Style.icons
                     font.pixelSize: 10
                 }
 

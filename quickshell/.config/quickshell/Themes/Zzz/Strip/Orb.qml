@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Shapes
 import qs.Core
+import qs.Themes.Zzz.Kit
 import qs.Services
 
 Item {
@@ -21,7 +22,7 @@ Item {
     // value changed: emphasise the ring, never cover it with the chip
     function ping() { ringPop.restart() }
 
-    width: UI.railW
+    width: Style.railW
     height: 38
 
     onGlyphChanged: pop.restart()
@@ -56,7 +57,7 @@ Item {
                 anchors.centerIn: parent
                 text: orb.glyph
                 color: orb.alert ? Theme.on_danger : orb.dim ? Theme.paper_dim : Theme.on_accent
-                font.family: UI.icons
+                font.family: Style.icons
                 font.pixelSize: 11
             }
         }

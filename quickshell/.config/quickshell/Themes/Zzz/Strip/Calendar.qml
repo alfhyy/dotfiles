@@ -1,5 +1,6 @@
 import QtQuick
 import qs.Core
+import qs.Themes.Zzz.Kit
 import qs.Services
 
 Plate {
@@ -49,7 +50,7 @@ Plate {
             anchors.verticalCenter: parent.verticalCenter
             text: "CALENDAR"
             color: Theme.on_stroke
-            font.family: UI.display
+            font.family: Style.display
             font.pixelSize: 10
             font.weight: Font.Black
             font.letterSpacing: 3
@@ -61,7 +62,7 @@ Plate {
             anchors.verticalCenter: parent.verticalCenter
             text: cal.view.getFullYear()
             color: Theme.stroke_accent
-            font.family: UI.display
+            font.family: Style.display
             font.pixelSize: 11
             font.weight: Font.Black
         }
@@ -72,7 +73,7 @@ Plate {
         y: 32
         text: ("0" + (cal.shift === 0 ? Sys.now.getDate() : 1)).slice(-2)
         color: Theme.sheet_ink
-        font.family: UI.display
+        font.family: Style.display
         font.pixelSize: 62
         font.weight: Font.Black
 
@@ -88,7 +89,7 @@ Plate {
         y: 76
         text: Qt.formatDateTime(cal.view, "MMM").toUpperCase()
         color: Theme.sheet_mark
-        font.family: UI.display
+        font.family: Style.display
         font.pixelSize: 20
         font.weight: Font.Black
         font.italic: true
@@ -107,7 +108,7 @@ Plate {
             text: cal.letters[index]
             color: index >= 5 ? Theme.sheet_mark : Theme.sheet_ink
             opacity: index >= 5 ? 1 : 0.6
-            font.family: UI.display
+            font.family: Style.display
             font.pixelSize: 10
             font.weight: Font.Black
         }
@@ -152,7 +153,7 @@ Plate {
                 anchors.centerIn: parent
                 text: cell.valid ? cell.day : ""
                 color: cell.today ? Theme.on_accent : index % 7 >= 5 ? Theme.sheet_mark : Theme.sheet_ink
-                font.family: UI.display
+                font.family: Style.display
                 font.pixelSize: 12
                 font.weight: Font.Black
             }

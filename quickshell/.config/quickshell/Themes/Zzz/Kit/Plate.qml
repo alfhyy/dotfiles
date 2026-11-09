@@ -19,7 +19,7 @@ Item {
         Rectangle {
             required property int index
 
-            x: UI.depth * (index === 0 ? 1 : 0.5)
+            x: Style.depth * (index === 0 ? 1 : 0.5)
             y: x
             width: plate.width
             height: plate.height

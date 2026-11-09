@@ -2,6 +2,7 @@ import QtQuick
 import Quickshell
 import Quickshell.Hyprland
 import qs.Core
+import qs.Themes.Zzz.Kit
 
 Scope {
     id: drawer
@@ -25,10 +26,10 @@ Scope {
 
         screen: drawer.anchorScreen
         anchors { left: true; top: true }
-        margins.left: 5 + UI.railW + UI.depth + 4
+        margins.left: 5 + Style.railW + Style.depth + 4
         margins.top: Math.max(5, Math.min((win.screen ? win.screen.height : 768) - implicitHeight - 5, drawer.anchorY - implicitHeight / 2))
-        implicitWidth: body.width + UI.depth + 8
-        implicitHeight: body.height + UI.depth + 8
+        implicitWidth: body.width + Style.depth + 8
+        implicitHeight: body.height + Style.depth + 8
         exclusionMode: ExclusionMode.Ignore
         color: "transparent"
         mask: drawer.t > 0.002 ? open : closed

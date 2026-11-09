@@ -1,6 +1,7 @@
 import QtQuick
 import Quickshell
 import qs.Core
+import qs.Themes.Zzz.Kit
 import qs.Services
 
 Variants {
@@ -15,8 +16,8 @@ Variants {
         margins.left: 5
         margins.top: 5
         margins.bottom: 5
-        implicitWidth: UI.railW + UI.depth
-        exclusiveZone: UI.railW + UI.depth
+        implicitWidth: Style.railW + Style.depth
+        exclusiveZone: Style.railW + Style.depth
         color: "transparent"
 
         anchors {
@@ -31,8 +32,8 @@ Variants {
             anchors.fill: parent
 
             Plate {
-                width: UI.railW
-                height: parent.height - UI.depth
+                width: Style.railW
+                height: parent.height - Style.depth
                 fill: Theme.ink
                 tone: Theme.accent
                 // radius:
@@ -58,8 +59,8 @@ Variants {
                 Item {
                     id: avatar
 
-                    x: (UI.railW - width) / 2
-                    y: UI.edge + UI.pad
+                    x: (Style.railW - width) / 2
+                    y: Style.edge + Style.pad
                     width: 32
                     height: 32
                     rotation: avatarArea.containsMouse ? 0 : -4
@@ -124,7 +125,7 @@ Variants {
                     id: bottomGroup
 
                     anchors.bottom: parent.bottom
-                    anchors.bottomMargin: UI.edge + UI.pad
+                    anchors.bottomMargin: Style.edge + Style.pad
                     width: parent.width
                     spacing: 0
 
@@ -179,7 +180,7 @@ Variants {
                                 anchors.horizontalCenter: parent.horizontalCenter
                                 text: Sys.hours
                                 color: Theme.paper
-                                font.family: UI.display
+                                font.family: Style.display
                                 font.pixelSize: 18
                                 font.weight: Font.Black
                             }
@@ -190,7 +191,7 @@ Variants {
                                 anchors.horizontalCenter: parent.horizontalCenter
                                 text: Sys.minutes
                                 color: Theme.accent
-                                font.family: UI.display
+                                font.family: Style.display
                                 font.pixelSize: 18
                                 font.weight: Font.Black
                             }
@@ -251,7 +252,7 @@ Variants {
                                 anchors.centerIn: parent
                                 text: "\uf011"
                                 color: Theme.ink
-                                font.family: UI.icons
+                                font.family: Style.icons
                                 font.pixelSize: 12
                             }
 

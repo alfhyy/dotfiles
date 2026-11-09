@@ -1,5 +1,6 @@
 import QtQuick
 import qs.Core
+import qs.Themes.Zzz.Kit
 import qs.Services
 
 Item {
@@ -9,7 +10,7 @@ Item {
 
     signal toggled()
 
-    width: UI.inner
+    width: Style.inner
     height: cover.height + 4 + (Sys.player ? span + 10 : 0)
 
     // 36px * 1.15, tilted, + 2px offset ≈ 46px: stays inside the 56px within the outline
@@ -69,7 +70,7 @@ Item {
             scroll: Sys.playing
             text: Sys.title
             color: Theme.paper
-            font.family: UI.display
+            font.family: Style.display
             font.pixelSize: 12
             font.weight: Font.Black
         }
@@ -82,7 +83,7 @@ Item {
             scroll: Sys.playing
             text: Sys.artist
             color: Theme.accent
-            font.family: UI.display
+            font.family: Style.display
             font.pixelSize: 9
             font.weight: Font.Bold
         }

@@ -2,6 +2,7 @@ import QtQuick
 import Quickshell
 import Quickshell.Services.Notifications
 import qs.Core
+import qs.Themes.Zzz.Kit
 import qs.Services
 
 Item {
@@ -74,7 +75,7 @@ Item {
     }
 
     width: 340
-    height: plate.height + UI.depth
+    height: plate.height + Style.depth
 
     Pop { id: pop; item: badgeBox; peak: 1.2 }
 
@@ -104,7 +105,7 @@ Item {
         x: card.hovered ? -6 : 0
         Behavior on x { Anim { kind: "fast" } }
 
-        width: card.width - UI.depth
+        width: card.width - Style.depth
         height: col.height + 4
         radius: 4
         fill: Theme.ink
@@ -140,7 +141,7 @@ Item {
                         anchors.centerIn: parent
                         text: card.critical ? "!!" : card.badge
                         color: card.critical ? Theme.danger : card.onTone
-                        font.family: UI.display
+                        font.family: Style.display
                         font.pixelSize: 10
                         font.weight: Font.Black
                     }
@@ -153,7 +154,7 @@ Item {
                     text: card.app.toUpperCase()
                     elide: Text.ElideRight
                     color: card.critical ? Theme.on_danger : Theme.on_stroke
-                    font.family: UI.display
+                    font.family: Style.display
                     font.pixelSize: 9
                     font.weight: Font.Black
                     font.letterSpacing: 1.5
@@ -167,7 +168,7 @@ Item {
                     readonly property int mins: Math.floor((Sys.now.getTime() - card.at) / 60000)
                     text: mins < 1 ? "NOW" : mins < 60 ? mins + "M" : Math.floor(mins / 60) + "H"
                     color: card.critical ? Theme.on_danger : card.low ? Theme.on_stroke : Theme.stroke_accent
-                    font.family: UI.display
+                    font.family: Style.display
                     font.pixelSize: 8
                     font.weight: Font.Black
                 }
@@ -191,7 +192,7 @@ Item {
                         anchors.centerIn: parent
                         text: ""
                         color: closeArea.containsMouse ? card.onTone : card.critical ? Theme.on_danger : Theme.on_stroke
-                        font.family: UI.icons
+                        font.family: Style.icons
                         font.pixelSize: 10
                     }
 
@@ -248,7 +249,7 @@ Item {
                         maximumLineCount: 2
                         elide: Text.ElideRight
                         color: Theme.paper
-                        font.family: UI.body
+                        font.family: Style.body
                         font.pixelSize: 14
                         font.weight: Font.Black
                         font.italic: true
@@ -264,7 +265,7 @@ Item {
                         elide: Text.ElideRight
                         color: Theme.paper_dim
                         linkColor: card.tone
-                        font.family: UI.body
+                        font.family: Style.body
                         font.pixelSize: 12
                         font.weight: Font.Medium
                         lineHeight: 1.1
@@ -303,7 +304,7 @@ Item {
                                 anchors.centerIn: parent
                                 text: pill.modelData.text.toUpperCase()
                                 color: pill.index === 0 ? card.onTone : Theme.paper
-                                font.family: UI.display
+                                font.family: Style.display
                                 font.pixelSize: 8
                                 font.weight: Font.Black
                                 font.letterSpacing: 0.5

@@ -1,5 +1,6 @@
 import QtQuick
 import qs.Core
+import qs.Themes.Zzz.Kit
 import qs.Services
 
 Rectangle {
@@ -23,7 +24,7 @@ Rectangle {
         visible: art.status !== Image.Ready
         text: "\uf001"
         color: Theme.accent_alt
-        font.family: UI.icons
+        font.family: Style.icons
         font.pixelSize: cover.width * 0.3
     }
 

@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Shapes
 import qs.Core
+import qs.Themes.Zzz.Kit
 import qs.Services
 
 // Battery readout: one big outlined "bubble" number with a pill badge, in the usual outline + 3D frame.
@@ -31,7 +32,7 @@ Plate {
         y: 10
         text: Sys.charging ? "CHARGING" : Sys.batLow ? "LOW BATTERY" : "BATTERY"
         color: Sys.batLow ? Theme.danger : Theme.paper_dim
-        font.family: UI.display
+        font.family: Style.display
         font.pixelSize: 8
         font.weight: Font.Black
         font.letterSpacing: 1.5
@@ -41,7 +42,7 @@ Plate {
 
     TextMetrics {
         id: tm
-        font.family: UI.display
+        font.family: Style.display
         font.pixelSize: 58
         font.weight: Font.Black
         text: card.value
@@ -110,7 +111,7 @@ Plate {
                 anchors.verticalCenter: parent.verticalCenter
                 text: ""
                 color: card.face
-                font.family: UI.icons
+                font.family: Style.icons
                 font.pixelSize: 9
             }
 
@@ -118,7 +119,7 @@ Plate {
                 anchors.verticalCenter: parent.verticalCenter
                 text: "%"
                 color: Theme.on_stroke
-                font.family: UI.display
+                font.family: Style.display
                 font.pixelSize: 9
                 font.weight: Font.Black
             }

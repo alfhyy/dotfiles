@@ -1,5 +1,6 @@
 import QtQuick
 import qs.Core
+import qs.Themes.Zzz.Kit
 import qs.Services
 
 Item {
@@ -9,7 +10,7 @@ Item {
     readonly property int count: 5
     readonly property int idx: Sys.ws - 1
 
-    width: UI.railW
+    width: Style.railW
     height: count * cell
 
     // gel travel: the edge facing the target springs ahead, the other one catches up,
@@ -31,9 +32,9 @@ Item {
         Behavior on lo { Anim { id: loAnim } }
         Behavior on hi { Anim { id: hiAnim } }
 
-        x: UI.edge + UI.pad
+        x: Style.edge + Style.pad
         y: lo
-        width: UI.inner
+        width: Style.inner
         height: Math.max(8, hi - lo)
         radius: width / 2
         opacity: ws.idx >= 0 && ws.idx < ws.count ? 1 : 0
@@ -53,7 +54,7 @@ Item {
             verticalAlignment: Text.AlignVCenter
             text: "0" + (index + 1)
             color: ws.idx === index ? Theme.on_accent : Sys.busy[index + 1] ? Theme.accent : Theme.paper_dim
-            font.family: UI.display
+            font.family: Style.display
             font.pixelSize: 10
             font.weight: Font.Black
             font.letterSpacing: 1

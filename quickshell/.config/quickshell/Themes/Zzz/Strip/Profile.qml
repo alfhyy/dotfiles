@@ -3,6 +3,7 @@ import Quickshell
 import Quickshell.Io
 import Quickshell.Services.SystemTray
 import qs.Core
+import qs.Themes.Zzz.Kit
 import qs.Services
 
 // Proxy deck: three numbered cards (01 profile, 02 stats, 03 tray). The open card widens and turns
@@ -179,7 +180,7 @@ Item {
                             id: num
                             text: "0" + (card.index + 1)
                             color: Theme.on_stroke
-                            font.family: UI.display
+                            font.family: Style.display
                             font.pixelSize: 34
                             font.weight: Font.Black
                         }
@@ -202,7 +203,7 @@ Item {
                             anchors.centerIn: parent
                             text: "↗"
                             color: card.active ? Theme.on_stroke : Theme.on_accent
-                            font.family: UI.icons
+                            font.family: Style.icons
                             font.pixelSize: 12
                             font.weight: Font.Bold
                         }
@@ -224,7 +225,7 @@ Item {
                     elide: Text.ElideRight
                     text: [deck.user.toUpperCase(), "STATS", "TRAY"][card.index]
                     color: card.active ? Theme.sheet_ink : Theme.paper
-                    font.family: UI.display
+                    font.family: Style.display
                     font.pixelSize: 12
                     font.weight: Font.Black
                     font.letterSpacing: 1
@@ -243,7 +244,7 @@ Item {
                         deck.trayCount > 0 ? deck.trayCount + (deck.trayCount === 1 ? " APP" : " APPS") : "ALL QUIET"
                     ][card.index]
                     color: card.active ? Theme.sheet_mark : Theme.paper_dim
-                    font.family: UI.body
+                    font.family: Style.body
                     font.pixelSize: 11
                     font.weight: Font.Bold
                 }
@@ -289,7 +290,7 @@ Item {
                     elide: Text.ElideRight
                     text: (/PRETTY_NAME="?([^"\n]+)/.exec(osRelease.text()) || [, "Linux"])[1]
                     color: Theme.sheet_ink
-                    font.family: UI.body
+                    font.family: Style.body
                     font.pixelSize: 13
                     font.weight: Font.Black
                     font.italic: true
@@ -300,7 +301,7 @@ Item {
                     elide: Text.ElideRight
                     text: "KERNEL " + kernel.text().trim()
                     color: Theme.sheet_mark
-                    font.family: UI.display
+                    font.family: Style.display
                     font.pixelSize: 8
                     font.weight: Font.Black
                     font.letterSpacing: 0.5
@@ -340,7 +341,7 @@ Item {
                                 anchors.verticalCenter: parent.verticalCenter
                                 text: pill.index === 1 ? (deck.wantLight ? "" : "") : pill.modelData.glyph
                                 color: pill.index === 0 ? Theme.on_accent : Theme.paper
-                                font.family: UI.icons
+                                font.family: Style.icons
                                 font.pixelSize: 11
                             }
 
@@ -348,7 +349,7 @@ Item {
                                 anchors.verticalCenter: parent.verticalCenter
                                 text: pill.index === 1 ? (deck.wantLight ? "DARK" : "LIGHT") : pill.modelData.text
                                 color: pill.index === 0 ? Theme.on_accent : Theme.paper
-                                font.family: UI.display
+                                font.family: Style.display
                                 font.pixelSize: 8
                                 font.weight: Font.Black
                             }
@@ -414,7 +415,7 @@ Item {
                         text: meter.modelData.label
                         color: Theme.sheet_ink
                         opacity: 0.7
-                        font.family: UI.display
+                        font.family: Style.display
                         font.pixelSize: 8
                         font.weight: Font.Black
                     }
@@ -448,7 +449,7 @@ Item {
                         anchors.verticalCenter: parent.verticalCenter
                         text: meter.modelData.text
                         color: meter.modelData.value > 0.85 ? Theme.danger : Theme.sheet_ink
-                        font.family: UI.display
+                        font.family: Style.display
                         font.pixelSize: 9
                         font.weight: Font.Black
                     }
@@ -518,7 +519,7 @@ Item {
                 text: tray.hot ? (tray.hot.tooltipTitle || tray.hot.title || tray.hot.id).toUpperCase()
                                : "CLICK OPENS · RIGHT-CLICK MENU"
                 color: Theme.sheet_mark
-                font.family: UI.display
+                font.family: Style.display
                 font.pixelSize: 8
                 font.weight: Font.Black
                 font.letterSpacing: 0.5

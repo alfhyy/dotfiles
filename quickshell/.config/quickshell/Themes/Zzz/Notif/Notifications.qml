@@ -3,6 +3,7 @@ import Quickshell
 import Quickshell.Hyprland
 import Quickshell.Wayland
 import qs.Core
+import qs.Themes.Zzz.Kit
 import qs.Services
 
 Scope {
