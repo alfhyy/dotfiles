@@ -1,7 +1,7 @@
 return {
-    primary = "266489",
-    secondary = "50606e",
-    tertiary = "64597b",
-    outline = "71787e",
+    primary = "95cdf7",
+    secondary = "b7c9d9",
+    tertiary = "cec0e8",
+    outline = "8b9198",
     shadow = "000000",
 }
