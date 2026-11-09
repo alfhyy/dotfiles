@@ -1,0 +1,122 @@
+* {
+    font: "JetBrainsMono Nerd Font 9";
+    background-color: transparent;
+    text-color: var(on-surface);
+}
+
+window {
+    transparency: "real";
+    background-color: var(surface);
+    border-radius: 16px;
+    border: 2px;
+    border-color: var(primary);
+    width: 550px;
+    location: center;
+    anchor: center;
+}
+
+mainbox {
+    enabled: true;
+    spacing: 0px;
+    background-color: transparent;
+    children: [ "inputbar", "listview" ];
+}
+
+/* =======================
+      Input Bar
+======================= */
+inputbar {
+    enabled: true;
+    spacing: 0px;
+    padding: 30px 30px 15px 30px;
+    background-color: transparent;
+    children: [ "entry" ];
+}
+
+entry {
+    enabled: true;
+    padding: 14px 20px;
+    border-radius: 12px;
+    background-color: var(surface-container-high);
+    text-color: var(on-surface);
+    placeholder: "Search...";
+    placeholder-color: var(on-surface-variant);
+    border: 2px;
+    border-color: var(outline-variant);
+}
+
+/* =======================
+      List View
+======================= */
+listview {
+    enabled: true;
+    columns: 1;
+    lines: 7;
+    cycle: true;
+    dynamic: true;
+    scrollbar: false;
+    layout: vertical;
+    reverse: false;
+    fixed-height: true;
+    fixed-columns: true;
+    spacing: 3px;
+    padding: 8px 10px 10px 10px;
+    background-color: transparent;
+}
+
+/* =======================
+      Elements
+======================= */
+element {
+    enabled: true;
+    spacing: 12px;
+    padding: 5px;
+    border-radius: 8px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+element normal.normal {
+    background-color: transparent;
+    text-color: var(on-surface);
+}
+
+element selected.normal {
+    background-color: var(primary);
+    text-color: var(on-primary);
+}
+
+element-icon {
+    background-color: transparent;
+    size: 28px;
+    cursor: inherit;
+}
+
+element-text {
+    background-color: transparent;
+    text-color: inherit;
+    cursor: inherit;
+    vertical-align: 0.5;
+    horizontal-align: 0.0;
+}
+
+message {
+    background-color: transparent;
+    border: 0px;
+}
+
+textbox {
+    padding: 12px;
+    border-radius: 10px;
+    background-color: var(surface-container);
+    text-color: var(on-surface);
+    vertical-align: 0.5;
+    horizontal-align: 0.0;
+}
+
+error-message {
+    padding: 12px;
+    border-radius: 20px;
+    background-color: var(surface);
+    text-color: var(on-surface);
+}
