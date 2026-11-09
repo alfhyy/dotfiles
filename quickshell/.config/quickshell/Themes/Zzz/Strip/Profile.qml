@@ -70,8 +70,7 @@ Item {
     function toggleMode() {
         wantLight = !wantLight
         var m = wantLight ? "light" : "dark"
-        Quickshell.execDetached(["sh", "-c", "echo " + m + " > \"$HOME/.cache/matugen-mode\"; "
-            + "matugen image \"$(awww query | sed -n 's/.*image: //p' | head -1)\" --source-color-index 0 -m " + m])
+        Quickshell.execDetached([deck.home + "/.local/bin/rice", "--mode", m])
     }
 
     function run(cmd) {
