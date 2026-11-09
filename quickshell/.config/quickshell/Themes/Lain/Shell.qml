@@ -14,4 +14,5 @@ Scope {
 
     Bar {}
     Notifications {}
+    Drawer { name: "calendar"; Calendar {} }
 }
