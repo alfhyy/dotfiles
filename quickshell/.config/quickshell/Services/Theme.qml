@@ -46,8 +46,10 @@ Singleton {
     }
 
     // matugen's surfaces are near-neutral; mix in the accent so the wallpaper shows in the main colour
-    readonly property real tintDark: 0.25
-    readonly property real tintLight: 0.18
+    property real tintDark: 0
+    property real tintLight: 0
+    onTintDarkChanged: if (ready) apply()
+    onTintLightChanged: if (ready) apply()
 
     property color ink: "#0a0f12"
     property color ink_raised: "#262a2e"
