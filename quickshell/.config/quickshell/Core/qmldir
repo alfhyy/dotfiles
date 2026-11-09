@@ -2,3 +2,4 @@ singleton UI UI.qml
 Anim Anim.qml
 CAnim CAnim.qml
 Pop Pop.qml
+DrawerWindow DrawerWindow.qml

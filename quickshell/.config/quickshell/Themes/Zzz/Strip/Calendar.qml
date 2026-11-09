@@ -6,11 +6,7 @@ import qs.Services
 Plate {
     id: cal
 
-    property int shift: 0
-
-    readonly property date view: new Date(Sys.now.getFullYear(), Sys.now.getMonth() + shift, 1)
-    readonly property int lead: (view.getDay() + 6) % 7
-    readonly property int days: new Date(view.getFullYear(), view.getMonth() + 1, 0).getDate()
+    readonly property CalendarModel m: CalendarModel {}
     readonly property string letters: "MTWTFSS"
 
     width: 290
@@ -28,14 +24,7 @@ Plate {
 
     MouseArea {
         anchors.fill: parent
-        property double last: 0
-
-        onWheel: wheel => {
-            var now = Date.now()
-            if (now - last < 150) return
-            last = now
-            cal.shift += wheel.angleDelta.y > 0 ? -1 : 1
-        }
+        onWheel: wheel => cal.m.wheel(wheel.angleDelta.y)
     }
 
     Rectangle {
@@ -60,7 +49,7 @@ Plate {
             anchors.right: parent.right
             anchors.rightMargin: 10
             anchors.verticalCenter: parent.verticalCenter
-            text: cal.view.getFullYear()
+            text: cal.m.view.getFullYear()
             color: Theme.stroke_accent
             font.family: Style.display
             font.pixelSize: 11
@@ -71,7 +60,7 @@ Plate {
     Text {
         x: 12
         y: 32
-        text: ("0" + (cal.shift === 0 ? Sys.now.getDate() : 1)).slice(-2)
+        text: ("0" + (cal.m.today || 1)).slice(-2)
         color: Theme.sheet_ink
         font.family: Style.display
         font.pixelSize: 62
@@ -80,14 +69,14 @@ Plate {
         MouseArea {
             anchors.fill: parent
             cursorShape: Qt.PointingHandCursor
-            onClicked: cal.shift = 0
+            onClicked: cal.m.reset()
         }
     }
 
     Text {
         x: 112
         y: 76
-        text: Qt.formatDateTime(cal.view, "MMM").toUpperCase()
+        text: Qt.formatDateTime(cal.m.view, "MMM").toUpperCase()
         color: Theme.sheet_mark
         font.family: Style.display
         font.pixelSize: 20
@@ -124,8 +113,8 @@ Plate {
 
     // one pill for today, behind the numbers (was a hidden Gel in each of the 42 cells)
     Gel {
-        readonly property int i: cal.lead + Sys.now.getDate() - 1
-        visible: cal.shift === 0
+        readonly property int i: cal.m.lead + cal.m.today - 1
+        visible: cal.m.today > 0
         x: 12 + (i % 7) * 38 + 4
         y: 132 + Math.floor(i / 7) * 30 + 3
         width: 30
@@ -140,9 +129,9 @@ Plate {
             id: cell
             required property int index
 
-            readonly property int day: index - cal.lead + 1
-            readonly property bool valid: day >= 1 && day <= cal.days
-            readonly property bool today: valid && cal.shift === 0 && day === Sys.now.getDate()
+            readonly property int day: index - cal.m.lead + 1
+            readonly property bool valid: day >= 1 && day <= cal.m.days
+            readonly property bool today: valid && day === cal.m.today
 
             x: 12 + (index % 7) * 38
             y: 132 + Math.floor(index / 7) * 30

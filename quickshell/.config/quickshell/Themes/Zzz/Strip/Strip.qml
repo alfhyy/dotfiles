@@ -103,7 +103,7 @@ Variants {
                         anchors.fill: parent
                         hoverEnabled: true
                         cursorShape: Qt.PointingHandCursor
-                        onClicked: UI.toggle("profile", win.modelData, avatar.mapToItem(null, 0, avatar.height / 2).y + win.margins.top)
+                        onClicked: UI.toggle("profile", win.modelData, Qt.point(0, avatar.mapToItem(null, 0, avatar.height / 2).y + win.margins.top))
                     }
                 }
 
@@ -118,7 +118,7 @@ Variants {
 
                     anchors.horizontalCenter: parent.horizontalCenter
                     y: ws.y + ws.height + (bottomGroup.y - ws.y - ws.height - height) / 2
-                    onToggled: UI.toggle("music", win.modelData, lane.mapToItem(null, 0, lane.height / 2).y + win.margins.top)
+                    onToggled: UI.toggle("music", win.modelData, Qt.point(0, lane.mapToItem(null, 0, lane.height / 2).y + win.margins.top))
                 }
 
                 Column {
@@ -145,9 +145,7 @@ Variants {
                         level: Sys.vol
                         dim: Sys.muted
                         onClicked: Sys.toggleMute()
-                        onWheeled: (delta) => {
-                            return Sys.nudgeVolume(delta / 120 * 0.05);
-                        }
+                        onWheeled: delta => Sys.wheelVolume(delta)
                     }
 
                     Orb {
@@ -156,7 +154,7 @@ Variants {
                         glyph: Sys.batGlyph
                         level: Sys.batLevel
                         alert: Sys.batLow
-                        onClicked: UI.toggle("battery", win.modelData, batOrb.mapToItem(null, 0, batOrb.height / 2).y + win.margins.top)
+                        onClicked: UI.toggle("battery", win.modelData, Qt.point(0, batOrb.mapToItem(null, 0, batOrb.height / 2).y + win.margins.top))
                     }
 
                     Item {
@@ -211,7 +209,7 @@ Variants {
                             anchors.fill: parent
                             hoverEnabled: true
                             cursorShape: Qt.PointingHandCursor
-                            onClicked: UI.toggle("calendar", win.modelData, clock.mapToItem(null, 0, clock.height / 2).y + win.margins.top)
+                            onClicked: UI.toggle("calendar", win.modelData, Qt.point(0, clock.mapToItem(null, 0, clock.height / 2).y + win.margins.top))
                         }
 
                     }

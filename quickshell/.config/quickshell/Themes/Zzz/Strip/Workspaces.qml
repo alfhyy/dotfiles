@@ -62,37 +62,9 @@ Item {
         }
     }
 
-    MouseArea {
+    WorkspaceInput {
         anchors.fill: parent
-        acceptedButtons: Qt.LeftButton | Qt.MiddleButton
-        cursorShape: Qt.PointingHandCursor
-
-        property int last: -1
-        property double lastWheel: 0
-
-        function at(mouse) {
-            return Math.max(0, Math.min(ws.count - 1, Math.floor(mouse.y / ws.cell))) + 1
-        }
-
-        onPressed: mouse => {
-            last = at(mouse)
-            if (mouse.button === Qt.MiddleButton) Sys.moveTo(last)
-            else Sys.goto(last)
-        }
-
-        onPositionChanged: mouse => {
-            var i = at(mouse)
-            if (pressed && pressedButtons === Qt.LeftButton && i !== last) {
-                last = i
-                Sys.goto(i)
-            }
-        }
-
-        onWheel: wheel => {
-            var now = Date.now()
-            if (now - lastWheel < 120) return
-            lastWheel = now
-            Sys.step(wheel.angleDelta.y > 0 ? -1 : 1)
-        }
+        count: ws.count
+        cell: ws.cell
     }
 }

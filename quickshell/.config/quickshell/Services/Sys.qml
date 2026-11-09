@@ -91,6 +91,10 @@ Singleton {
             sink.audio.volume = Math.max(0, Math.min(1, sink.audio.volume + delta))
     }
 
+    function wheelVolume(delta) {
+        nudgeVolume(delta / 120 * 0.05)
+    }
+
     function toggleMute() {
         if (sink && sink.audio)
             sink.audio.muted = !sink.audio.muted

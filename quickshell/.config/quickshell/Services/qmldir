@@ -1,3 +1,6 @@
 singleton Sys Sys.qml
 singleton Notifs Notifs.qml
 singleton Theme Theme.qml
+CalendarModel CalendarModel.qml
+WorkspaceInput WorkspaceInput.qml
+MediaInput MediaInput.qml
