@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Shapes
 import qs.Core
-import qs.Theme
+import qs.Services
 
 Item {
     id: orb

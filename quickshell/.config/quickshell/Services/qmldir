@@ -1,2 +1,3 @@
 singleton Sys Sys.qml
 singleton Notifs Notifs.qml
+singleton Theme Theme.qml

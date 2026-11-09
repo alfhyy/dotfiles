@@ -1,5 +1,5 @@
 import QtQuick
-import qs.Theme
+import qs.Services
 
 Item {
     id: plate

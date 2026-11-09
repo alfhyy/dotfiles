@@ -1,5 +1,5 @@
 import QtQuick
-import qs.Theme
+import qs.Services
 
 // Theme-change transition for one window. Place it as a sibling over `source`:
 // Theme.capture -> snapshot the old look; Theme.swapped (colours already switched, once) ->

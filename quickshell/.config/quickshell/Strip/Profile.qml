@@ -3,7 +3,7 @@ import Quickshell
 import Quickshell.Io
 import Quickshell.Services.SystemTray
 import qs.Core
-import qs.Theme
+import qs.Services
 
 // Proxy deck: three numbered cards (01 profile, 02 stats, 03 tray). The open card widens and turns
 // to the sheet colour; the others fold to a numbered spine. Built once with its drawer; the meters

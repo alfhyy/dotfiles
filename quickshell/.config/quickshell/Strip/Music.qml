@@ -1,7 +1,6 @@
 import QtQuick
 import qs.Core
 import qs.Services
-import qs.Theme
 
 Plate {
     id: music

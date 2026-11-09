@@ -1,6 +1,5 @@
 import QtQuick
 import qs.Core
-import qs.Theme
 import qs.Services
 
 Item {

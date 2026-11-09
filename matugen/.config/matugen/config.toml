@@ -22,8 +22,8 @@ output_path = '~/.config/rofi/colors.rasi'
 
 [templates.quickshell]
 input_path = "~/.config/matugen/templates/quickshell-colors.json"
-output_path = "~/.config/quickshell/Theme/colors.json"
-# Theme/theme.qml loads this JSON and animates to it; the IPC call makes it re-read right away
+output_path = "~/.config/quickshell/Services/colors.json"
+# Services/Theme.qml loads this JSON and animates to it; the IPC call makes it re-read right away
 post_hook = 'qs ipc call theme reload'
 
 [templates.gtk3]

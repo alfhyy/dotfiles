@@ -2,7 +2,6 @@ import QtQuick
 import QtQuick.Shapes
 import qs.Core
 import qs.Services
-import qs.Theme
 
 // Battery readout: one big outlined "bubble" number with a pill badge, in the usual outline + 3D frame.
 Plate {

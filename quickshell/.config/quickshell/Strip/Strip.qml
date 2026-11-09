@@ -2,7 +2,6 @@ import QtQuick
 import Quickshell
 import qs.Core
 import qs.Services
-import qs.Theme
 
 Variants {
     model: Quickshell.screens

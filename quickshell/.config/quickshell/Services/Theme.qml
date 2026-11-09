@@ -3,7 +3,7 @@ import QtQuick
 import Quickshell
 import Quickshell.Io
 
-// Palette from matugen (templates/quickshell-colors.json -> Theme/colors.json).
+// Palette from matugen (templates/quickshell-colors.json -> Services/colors.json).
 // Changes don't animate colours (that re-evaluated every binding each frame): the file loads into a
 // staging adapter, Liquid overlays snapshot the old look on `capture`, colours swap once, and the
 // snapshots pour away on `swapped`.
@@ -76,7 +76,7 @@ Singleton {
 
     FileView {
         id: file
-        path: Quickshell.shellPath("Theme/colors.json")
+        path: Quickshell.shellPath("Services/colors.json")
         blockLoading: true
         watchChanges: true
         onFileChanged: reload()

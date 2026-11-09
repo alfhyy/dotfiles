@@ -3,7 +3,6 @@ import Quickshell
 import Quickshell.Services.Notifications
 import qs.Core
 import qs.Services
-import qs.Theme
 
 Item {
     id: card
