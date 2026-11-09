@@ -22,7 +22,7 @@ Item {
 
     Rectangle {
         anchors.fill: parent
-        color: Theme.ink_raised
+        color: Theme.ink
         opacity: frame.fade
     }
 
@@ -69,13 +69,13 @@ Item {
             y: -height / 2
             width: lt.implicitWidth + 8
             height: lt.implicitHeight
-            color: Theme.ink_raised
+            color: Theme.ink
 
             Text {
                 id: lt
                 x: 4
                 text: frame.legend
-                color: Theme.paper_dim
+                color: Theme.line
                 font.family: Style.system
                 font.pixelSize: Style.px
             }
@@ -87,7 +87,7 @@ Item {
             y: -height / 2
             width: rt.implicitWidth + 8
             height: rt.implicitHeight
-            color: Theme.ink_raised
+            color: Theme.ink
 
             Text {
                 id: rt

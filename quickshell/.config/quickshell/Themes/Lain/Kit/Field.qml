@@ -33,7 +33,7 @@ Item {
             id: tag
             x: 3
             text: field.legend
-            color: field.marked ? Theme.ink : Theme.paper_dim
+            color: field.marked ? Theme.ink : Theme.line
             font.family: Style.system
             font.pixelSize: Style.px
         }

@@ -8,13 +8,12 @@ Item {
     property string tail
     property color tone: Theme.paper
     property color dim: Theme.paper_dim
-    property real share: 0.62
 
     implicitHeight: l.implicitHeight
 
     Text {
         id: l
-        width: Math.min(implicitWidth, leader.width * leader.share)
+        width: Math.max(0, Math.min(implicitWidth, leader.width - r.width - 48))
         elide: Text.ElideRight
         text: leader.lead
         color: leader.tone
@@ -25,7 +24,7 @@ Item {
     Text {
         id: r
         anchors.right: parent.right
-        width: Math.min(implicitWidth, leader.width - l.width - 24)
+        width: Math.min(implicitWidth, leader.width * 0.4)
         horizontalAlignment: Text.AlignRight
         elide: Text.ElideRight
         text: leader.tail
