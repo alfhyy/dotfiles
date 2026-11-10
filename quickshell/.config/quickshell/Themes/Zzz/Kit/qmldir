@@ -1,0 +1,5 @@
+singleton Style Style.qml
+Plate Plate.qml
+Gel Gel.qml
+Halftone Halftone.qml
+Liquid Liquid.qml

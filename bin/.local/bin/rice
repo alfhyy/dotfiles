@@ -1,0 +1,101 @@
+#!/bin/sh
+set -eu
+
+cfg=${XDG_CONFIG_HOME:-$HOME/.config}
+root=${XDG_STATE_HOME:-$HOME/.local/state}/rice
+themes=$cfg/rice/themes
+
+die() {
+    printf 'rice: %s\n' "$*" >&2
+    exit 1
+}
+
+available() {
+    for f in "$themes"/*.env; do
+        [ -e "$f" ] && basename "$f" .env
+    done | tr '\n' ' '
+}
+
+usage() {
+    printf 'usage: rice [theme] | rice --mode light|dark | rice --wallpaper <file>\nthemes: %s\n' "$(available)"
+}
+
+current=$(cat "$root/theme" 2>/dev/null || true)
+current=${current:-zzz}
+theme=$current
+
+case ${1-} in
+    --mode)
+        case ${2-} in light|dark) ;; *) die "--mode takes light or dark" ;; esac
+        mkdir -p "$root/$current"
+        printf '%s\n' "$2" > "$root/$current/mode"
+        ;;
+    --wallpaper)
+        [ -f "${2-}" ] || die "no such file: ${2-}"
+        mkdir -p "$root/$current"
+        realpath "$2" > "$root/$current/wallpaper"
+        ;;
+    -h|--help)
+        usage
+        exit 0
+        ;;
+    -*)
+        usage >&2
+        exit 1
+        ;;
+    "")
+        ;;
+    *)
+        theme=$1
+        ;;
+esac
+
+[ -f "$themes/$theme.env" ] || die "unknown theme '$theme' (available: $(available))"
+scheme=
+mode=
+default_mode=dark
+. "$themes/$theme.env"
+mkdir -p "$root/$theme"
+
+printf '%s\n' "$theme" > "$root/theme"
+qs ipc call theme reload >/dev/null 2>&1 || true
+
+for dir in "$cfg"/*/themes; do
+    [ "$dir" != "$themes" ] && [ -L "${dir%/themes}" ] || continue
+    for link in "$dir"/current.*; do
+        [ -L "$link" ] || continue
+        [ -e "$dir/$theme.${link##*/current.}" ] || rm -f "$link"
+    done
+    for file in "$dir/$theme".*; do
+        [ -e "$file" ] || continue
+        name=${file##*/}
+        ln -sfn "$name" "$dir/current.${name#"$theme".}"
+    done
+done
+
+shown=$(awww query 2>/dev/null | sed -n 's/.*image: //p' | head -1)
+wall=$(cat "$root/$theme/wallpaper" 2>/dev/null || true)
+wall=${wall:-$shown}
+[ -n "$wall" ] || die "no wallpaper for '$theme' and none displayed"
+[ -s "$root/$theme/wallpaper" ] || printf '%s\n' "$wall" > "$root/$theme/wallpaper"
+if [ "$wall" != "$shown" ]; then
+    awww img "$wall" \
+        --transition-type center \
+        --transition-duration 2 \
+        --transition-fps 144 \
+        --transition-step 255
+fi
+
+if [ -z "$mode" ]; then
+    mode=$(cat "$root/$theme/mode" 2>/dev/null || true)
+    mode=${mode:-$default_mode}
+fi
+set -- image "$wall" --source-color-index 0 -m "$mode"
+[ -z "$scheme" ] || set -- "$@" -t "$scheme"
+matugen "$@"
+
+if [ -x "$cfg/fastfetch/update-colors.sh" ]; then
+    "$cfg/fastfetch/update-colors.sh"
+fi
+hyprctl reload >/dev/null 2>&1 || true
+pkill -USR1 -x kitty 2>/dev/null || true
