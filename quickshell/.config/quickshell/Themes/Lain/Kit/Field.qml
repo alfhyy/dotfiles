@@ -27,13 +27,13 @@ Item {
         y: Style.rule - height / 2
         width: tag.implicitWidth + 6
         height: tag.implicitHeight
-        color: field.marked ? Theme.paper : Theme.ink
+        color: field.marked ? Theme.accent : Theme.ink
 
         Text {
             id: tag
             x: 3
             text: field.legend
-            color: field.marked ? Theme.ink : Theme.line
+            color: field.marked ? Theme.on_accent : Theme.line
             font.family: Style.system
             font.pixelSize: Style.px
         }

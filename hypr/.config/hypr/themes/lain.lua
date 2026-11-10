@@ -5,15 +5,15 @@ return function(c)
             gaps_out = { top = 6, right = 6, bottom = 6, left = 6 },
             border_size = 1,
             col = {
-                active_border = "rgba(" .. (c.source or c.on_surface or c.primary) .. "ff)",
+                active_border = "rgba(" .. c.primary .. "ff)",
                 inactive_border = "rgba(" .. c.outline .. "ff)",
             },
         },
 
         decoration = {
             rounding = 0,
-            active_opacity = 0.92,
-            inactive_opacity = 0.85,
+            active_opacity = 1.0,
+            inactive_opacity = 1.0,
             dim_inactive = false,
             shadow = {
                 enabled = false,

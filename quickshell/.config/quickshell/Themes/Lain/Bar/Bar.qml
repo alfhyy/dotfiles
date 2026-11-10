@@ -109,7 +109,7 @@ Variants {
                             anchors.centerIn: parent
                             width: 26
                             height: 15
-                            color: cell.active ? Theme.paper : "transparent"
+                            color: cell.active ? Theme.accent : "transparent"
                         }
 
                         Text {
@@ -117,7 +117,7 @@ Variants {
                             width: 26
                             horizontalAlignment: Text.AlignHCenter
                             text: "0" + (cell.index + 1)
-                            color: cell.active ? Theme.ink : Sys.busy[cell.index + 1] ? Theme.paper : Theme.line
+                            color: cell.active ? Theme.on_accent : Sys.busy[cell.index + 1] ? Theme.paper : Theme.line
                             font.family: Style.system
                             font.pixelSize: Style.px
                             transform: Translate { id: shift }
@@ -238,7 +238,7 @@ Variants {
                                 required property int index
                                 width: 3
                                 height: 10
-                                color: index < audio.lit ? Theme.paper : Theme.line
+                                color: index < audio.lit ? Theme.accent : Theme.line
                             }
                         }
                     }

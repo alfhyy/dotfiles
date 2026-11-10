@@ -143,7 +143,7 @@ Frame {
                 y: 1
                 width: parent.width - 1
                 height: parent.height - 1
-                color: Theme.paper
+                color: Theme.accent
             }
 
             Text {
@@ -151,7 +151,7 @@ Frame {
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
                 text: cell.valid ? ("0" + cell.day).slice(-2) : "··"
-                color: cell.today ? Theme.ink : !cell.valid ? Theme.line : cell.index % 7 >= 5 ? Theme.paper_dim : Theme.paper
+                color: cell.today ? Theme.on_accent : !cell.valid ? Theme.line : cell.index % 7 >= 5 ? Theme.paper_dim : Theme.paper
                 font.family: Style.system
                 font.pixelSize: Style.px
             }
