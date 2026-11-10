@@ -42,3 +42,7 @@ input_path = '~/.config/matugen/templates/nvim-colors.lua'
 output_path = '~/.config/nvim/colors/matugen.lua'
 # nvim fires its Signal autocmd on SIGUSR1; init.lua reloads the colorscheme there
 post_hook = 'pkill -USR1 -x nvim || true'
+
+[templates.hyprlock]
+input_path = '~/.config/matugen/templates/hyprlock-colors.conf'
+output_path = '~/.config/hypr/hyprlock-colors.conf'
