@@ -7,16 +7,19 @@ The desktop is NAVI, Lain's computer: a terminal that looks into the Wired. Quie
 Mood: quiet, eerie, humming, clinical, haunted, analog.
 Never: neon, glossy, playful, loud, busy, rounded, colorful.
 
-## Palette (matugen, dark mode, scheme-monochrome)
+## Palette (matugen, dark mode, default scheme)
 
-- ink: background, near black
+The palette follows the wallpaper. Not monochrome: a wallpaper change must be visible in the bar, not only in the window border.
+
+- ink: background, near black, faintly tinted by the wallpaper
 - ink_raised: panel fill, barely lighter than ink
 - paper: primary text, bone white
 - paper_dim: secondary text
-- line: hairlines and grids, low contrast
-- error: the only color. For alerts (low battery, mute, failure), plus at most one deliberate red detail per screen (a caret, a wire, one underline). Never bulk decoration.
+- line: hairlines, grids and legends, low contrast
+- accent: the wallpaper's colour. Used only for marks: the active layer block, an inverted legend (hover or open drawer), lit level ticks, today in the calendar, the focused window border. Text on it uses on_accent. Never for body text or fills larger than a mark.
+- error: alerts only (low battery, mute, failure), plus the NAVI caret. Never bulk decoration.
 
-Emphasis comes from inversion (paper block with ink text), hollow outline text and size. Never from added hue.
+Emphasis comes from inversion (an accent block with on_accent text), hollow outline text and size.
 
 ## Type
 
@@ -58,7 +61,9 @@ Emphasis comes from inversion (paper block with ink text), hollow outline text a
 
 ## Hyprland in this theme
 
-1px borders: inactive `line`, active `paper`. Rounding 0. Small gaps. No shadows. Short, settled window animations with no overshoot.
+1px borders: inactive `line`, active `accent`. Rounding 0. Small gaps. No shadows. Short, settled window animations with no overshoot.
+
+Window opacity: windows stay fully opaque. Only the terminal is translucent (kitty `background_opacity 0.85`), so its text stays solid. No blur.
 
 ## Surfaces
 
