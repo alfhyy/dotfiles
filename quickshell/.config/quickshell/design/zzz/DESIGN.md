@@ -24,24 +24,24 @@ Source: matugen from the current wallpaper, `--source-color-index 0`, default sc
 `rice --mode`). Switching settings: ~/.config/rice/themes/zzz.env.
 Template: matugen/.config/matugen/templates/quickshell-colors.json → Services/colors.json → Services/Theme.qml.
 
-| Token | matugen role | Current (dark) | Used for |
-|---|---|---|---|
-| ink | surface_container_lowest, tinted | #0a0f12 | Plate faces: rail, music, notifications, folded deck cards |
-| ink_raised | surface_container_high, tinted +0.06 | #262a2e | Secondary chips, art backing, rail tape stripe, inactive pills |
-| paper | on_surface | #e0e3e8 | Primary text on ink; halftone ink at low alpha |
-| paper_dim | on_surface_variant | #c1c7ce | Secondary text, empty workspaces, timestamps |
-| accent | primary | #95cdf7 | Offset slabs, gel pills, minutes, ring backgrounds, first action pill |
-| accent_alt | tertiary | #cec0e8 | Orb level rings, power star, avatar slab while profile is open, standby wave |
-| on_accent | on_primary | #00344e | Text on accent |
-| line | outline | #8b9198 | Low-urgency notifications, dimmed rings |
-| sheet | inverse_surface | #e0e3e8 | Inverted surfaces: calendar, the open deck card |
-| sheet_ink | inverse_on_surface | #2d3135 | Text on sheet |
-| sheet_mark | inverse_primary | #266489 | Accent on sheet: month, weekends, meters, subtitles |
-| stroke | shadow | #000000 | Every outline, header strips, number shadows |
-| accent_soft | primary_container | #004c6e | Deck tray art gradient, stroke_accent in light mode |
-| on_accent_soft | on_primary_container | #c9e6ff | (defined, currently unused in QML) |
-| danger | error | #ffb4ab | Low battery, critical notifications, meters over 85% |
-| on_danger | on_error | #690005 | Text on danger |
+| Token          | matugen role                         | Current (dark) | Used for                                                                     |
+| -------------- | ------------------------------------ | -------------- | ---------------------------------------------------------------------------- |
+| ink            | surface_container_lowest, tinted     | #0a0f12        | Plate faces: rail, music, notifications, folded deck cards                   |
+| ink_raised     | surface_container_high, tinted +0.06 | #262a2e        | Secondary chips, art backing, rail tape stripe, inactive pills               |
+| paper          | on_surface                           | #e0e3e8        | Primary text on ink; halftone ink at low alpha                               |
+| paper_dim      | on_surface_variant                   | #c1c7ce        | Secondary text, empty workspaces, timestamps                                 |
+| accent         | primary                              | #95cdf7        | Offset slabs, gel pills, minutes, ring backgrounds, first action pill        |
+| accent_alt     | tertiary                             | #cec0e8        | Orb level rings, power star, avatar slab while profile is open, standby wave |
+| on_accent      | on_primary                           | #00344e        | Text on accent                                                               |
+| line           | outline                              | #8b9198        | Low-urgency notifications, dimmed rings                                      |
+| sheet          | inverse_surface                      | #e0e3e8        | Inverted surfaces: calendar, the open deck card                              |
+| sheet_ink      | inverse_on_surface                   | #2d3135        | Text on sheet                                                                |
+| sheet_mark     | inverse_primary                      | #266489        | Accent on sheet: month, weekends, meters, subtitles                          |
+| stroke         | shadow                               | #000000        | Every outline, header strips, number shadows                                 |
+| accent_soft    | primary_container                    | #004c6e        | Deck tray art gradient, stroke_accent in light mode                          |
+| on_accent_soft | on_primary_container                 | #c9e6ff        | (defined, currently unused in QML)                                           |
+| danger         | error                                | #ffb4ab        | Low battery, critical notifications, meters over 85%                         |
+| on_danger      | on_error                             | #690005        | Text on danger                                                               |
 
 Derived in Services/Theme.qml:
 
@@ -69,13 +69,13 @@ Other surfaces map the same scheme:
 
 ## Type
 
-| Role | Font | Where |
-|---|---|---|
-| Display | Unbounded (UI.display; falls back through Syne, Krona One, Archivo Black, Rubik Mono One, then the icon font) | All labels, numerals, titles, the clock. Black weight almost everywhere |
-| Body | Rubik (UI.body) | Notification summary (14 Black italic) and body (12 Medium), OS line, deck subtitles |
-| Icons | JetBrainsMono Nerd Font (UI.icons) | Glyphs in orbs, pills, buttons |
-| Terminal / launcher | JetBrainsMono Nerd Font | kitty 11.5, rofi 9, hyprswitch 12, hyprlock clock 100 |
-| GTK | SF Pro Text, weight 500 | GTK apps |
+| Role                | Font                                                                                                          | Where                                                                                |
+| ------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| Display             | Unbounded (UI.display; falls back through Syne, Krona One, Archivo Black, Rubik Mono One, then the icon font) | All labels, numerals, titles, the clock. Black weight almost everywhere              |
+| Body                | Rubik (UI.body)                                                                                               | Notification summary (14 Black italic) and body (12 Medium), OS line, deck subtitles |
+| Icons               | JetBrainsMono Nerd Font (UI.icons)                                                                            | Glyphs in orbs, pills, buttons                                                       |
+| Terminal / launcher | JetBrainsMono Nerd Font                                                                                       | kitty 11.5, rofi 9, hyprswitch 12, hyprlock clock 100                                |
+| GTK                 | SF Pro Text, weight 500                                                                                       | GTK apps                                                                             |
 
 Conventions:
 
@@ -193,11 +193,11 @@ This is the signature moment.
 Curves (Themes/Zzz/Kit/Style.qml, bound into Core/UI.qml's motion slots by Themes/Zzz/Shell.qml),
 always through `Anim` / `CAnim`:
 
-| Name | Duration | Bezier | Feel | Used for |
-|---|---|---|---|---|
-| spatial | 500ms | 0.38, 1.21, 0.22, 1 | settles with overshoot | drawers, position, list moves, deck width |
-| fast | 350ms | 0.42, 1.67, 0.21, 0.9 | strong spring | hover scale/tilt, presses, pop return |
-| effects | 200ms | 0.34, 0.8, 0.34, 1 | quick, no overshoot | opacity, colour, pop peak |
+| Name    | Duration | Bezier                | Feel                   | Used for                                  |
+| ------- | -------- | --------------------- | ---------------------- | ----------------------------------------- |
+| spatial | 500ms    | 0.38, 1.21, 0.22, 1   | settles with overshoot | drawers, position, list moves, deck width |
+| fast    | 350ms    | 0.42, 1.67, 0.21, 0.9 | strong spring          | hover scale/tilt, presses, pop return     |
+| effects | 200ms    | 0.34, 0.8, 0.34, 1    | quick, no overshoot    | opacity, colour, pop peak                 |
 
 Patterns:
 
@@ -281,7 +281,7 @@ Where the code currently disagrees with CLAUDE.md or design/THEMES.md:
   - The title marquee steps on a Timer while playing.
   - Notifications count down on a Timer.
 - **Linear or non-Anim motion:**
-  - The marquee moves in linear 1px steps.
+  - The marquee moves in linear 1px Read design/lain/DESIGN.md and every image in design/lain/refs. Propose the lain bar and the calendar drawer as ASCII wireframes at 1366x768, and list which components are shared with zzz and which are theme-specific.steps.
   - Liquid uses its own NumberAnimation with a custom bezier.
   - VText's original pauses were replaced by Timer intervals.
 - **Hex literals:**

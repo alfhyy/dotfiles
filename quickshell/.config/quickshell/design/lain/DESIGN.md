@@ -59,6 +59,17 @@ Emphasis comes from inversion (an accent block with on_accent text), hollow outl
 2. Idle: when the session goes idle, one line fades in at the bottom: `you are connected.`
 3. Workspace switch: the LAYER number appears large and outlined for a moment, with a one-frame glitch.
 
+## Music drawer (SIG)
+
+Opens from the SIG cell; modelled on the music panel in refs/lainiw.jpg.
+
+- Layout: cover top-left, title (JetBrains Mono 13) and artist beside it, spectrum bars under them, then the progress ruler, elapsed and length on a dotted leader, and the controls in one row. Legend `SIG`; the status (`PLAYING` in accent, `PAUSED`, `NO SIGNAL`) sits top-right on the frame.
+- Controls: `|<< PREV`, `|| PAUSE` / `>> PLAY`, `NEXT >>|` as 1px-framed keys; hover inverts to an accent block with on_accent text. With no player they show in line and do nothing.
+- Progress is a tick ruler, not a bar: 46 hairline ticks with every fifth tall; elapsed ticks are accent, the rest line. Clicking the ruler seeks when the player allows it.
+- Updates: the position refreshes once per second, and the spectrum runs, only while the drawer is open and music is playing. Paused, closed or no player: nothing ticks, and the spectrum lies flat as a single line.
+- Cover: shown at reduced opacity under ink scanlines (every other row). True grayscale or dither needs a shader, which is not allowed.
+- A track change flickers the title once; nothing else glitches.
+
 ## Hyprland in this theme
 
 1px borders: inactive `line`, active `accent`. Rounding 0. Small gaps. No shadows. Short, settled window animations with no overshoot.
